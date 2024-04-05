@@ -19,6 +19,8 @@ export const plant = pgTable('plant', {
   size: sizeEnum('size').notNull(),
   description: text('description'),
   age_months: numeric('age_months'),
+  recommended_place: text('recommended_place'),
+  leave_number: numeric('leave_number'),
 });
 
 export type Plant = typeof plant.$inferSelect;

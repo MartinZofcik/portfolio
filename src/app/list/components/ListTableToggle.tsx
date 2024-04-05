@@ -1,19 +1,32 @@
-import { Bold, Italic, Underline } from 'lucide-react';
+import { Grid3X3, Table2 } from 'lucide-react';
 
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 
-export function ListTableToggle() {
+interface ListTableToggleProps {
+  value: string;
+  setValue: (value: string) => void;
+}
+
+const ListTableToggle: React.FC<ListTableToggleProps> = ({
+  value,
+  setValue,
+}) => {
   return (
-    <ToggleGroup type="single">
-      <ToggleGroupItem value="bold" aria-label="Toggle bold">
-        <Bold className="h-4 w-4" />
+    <ToggleGroup
+      type="single"
+      value={value}
+      onValueChange={(value) => {
+        if (value) setValue(value);
+      }}
+    >
+      <ToggleGroupItem value="grid" aria-label="Toggle grid view">
+        <Grid3X3 className="h-4 w-4" />
       </ToggleGroupItem>
-      <ToggleGroupItem value="italic" aria-label="Toggle italic">
-        <Italic className="h-4 w-4" />
-      </ToggleGroupItem>
-      <ToggleGroupItem value="underline" aria-label="Toggle underline">
-        <Underline className="h-4 w-4" />
+      <ToggleGroupItem value="table" aria-label="Toggle table view">
+        <Table2 className="h-4 w-4" />
       </ToggleGroupItem>
     </ToggleGroup>
   );
-}
+};
+
+export default ListTableToggle;
