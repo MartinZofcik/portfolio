@@ -4,6 +4,8 @@ import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import Header from '@/app/Header';
 import { Toaster } from '@/components/ui/toaster';
+import NextTopLoader from 'nextjs-toploader';
+import React from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -27,6 +29,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
+          <NextTopLoader />
           {children}
           <Toaster />
         </ThemeProvider>

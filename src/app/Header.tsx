@@ -9,11 +9,11 @@ const Header = () => {
   const { toast } = useToast();
 
   return (
-    <header className="mx-auto px-4 py-3 bg-gray-100 dark:bg-gray-900 ">
+    <header className="mx-auto px-4 py-1 bg-gray-100 dark:bg-gray-900 ">
       <div className="flex items-center justify-between ">
         <Link href="/" className="flex items-center pl-4 text-2xl font-medium">
           <Sprout color="#22ac20" className="pr-1" height={50} width={50} />
-          Naše kvetinky
+          {/*Naše kvetinky*/}
         </Link>
         <div className="flex items-center">
           <ModeToggle />

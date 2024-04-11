@@ -1,20 +1,39 @@
 'use client';
 
-import { Plant } from '@/db/schema';
+import React from 'react';
+import { Plant } from '@prisma/client';
 import PlantCard from '@/app/list/components/PlantCard';
-import { getPlants } from '@/db/actions';
+import ListTableToggle from '@/app/list/components/ListTableToggle';
+import { useSearchParams } from 'next/navigation';
+import PlantsDataTable from '@/app/list/components/PlantsDataTable';
 
-export default async function PlantsView() {
-  const plants = await getPlants();
+interface IPlantProps {
+  plants: Plant[];
+}
+
+const PlantsView: React.FC<IPlantProps> = ({ plants }) => {
+  const searchParams = useSearchParams();
+
+  const gridView =
+    !searchParams.get('view')?.toString() ||
+    searchParams.get('view')?.toString() === 'grid';
 
   return (
-    <div className="grid grid-cols-4 gap-8">
-      {plants &&
-        []
-          .concat(...Array(10).fill(plants))
-          .map((plant: Plant, index) => (
+    <div className="container">
+      <div className="flex justify-end">
+        <ListTableToggle />
+      </div>
+      {gridView ? (
+        <div className="grid grid-cols-4 gap-6">
+          {[].concat(...Array(10).fill(plants)).map((plant: Plant, index) => (
             <PlantCard key={index} plant={plant} />
           ))}
+        </div>
+      ) : (
+        <PlantsDataTable plants={plants} />
+      )}
     </div>
   );
-}
+};
+
+export default PlantsView;

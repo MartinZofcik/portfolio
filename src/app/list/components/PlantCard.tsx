@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import {
   Card,
   CardContent,
@@ -10,8 +11,8 @@ import {
 } from '@/components/ui/card';
 import Image from 'next/image';
 import tree from '../../../../public/tree.jpg';
-import { Plant } from '@/db/schema';
 import Link from 'next/link';
+import { Plant } from '@prisma/client';
 
 interface PlantProps {
   plant: Plant;
@@ -29,7 +30,7 @@ const PlantCard: React.FC<PlantProps> = ({ plant }) => {
           <Image src={tree} alt="Picture of the plant" />
         </CardContent>
         <CardFooter>
-          <p className="text-xs">{plant?.description}</p>
+          <p className="text-xs text-ellipsis">{plant?.description}</p>
         </CardFooter>
       </Card>
     </Link>
