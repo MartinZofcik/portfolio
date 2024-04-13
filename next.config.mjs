@@ -1,21 +1,8 @@
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//   reactStrictMode: true,
-//   swcMinify: true,
-//
-//   webpack: (config, { isServer }) => {
-//     if (!isServer) {
-//       config.resolve.fallback = {
-//         perf_hooks: false,
-//         fs: false,
-//       };
-//     }
-//
-//     return config;
-//   },
-// };
-// export default nextConfig;
+import createNextIntlPlugin from 'next-intl/plugin';
 
+const withNextIntl = createNextIntlPlugin();
+
+/** @type {import('next').NextConfig} */
 const nextConfig = {};
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

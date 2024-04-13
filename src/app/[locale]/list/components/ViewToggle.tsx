@@ -3,9 +3,11 @@
 import { Grid3X3, Table2 } from 'lucide-react';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
-const ListTableToggle = () => {
+const ViewToggle = () => {
   const { replace } = useRouter();
+  const t = useTranslations('Index');
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -24,14 +26,14 @@ const ListTableToggle = () => {
     >
       <ToggleGroupItem value="grid" aria-label="Toggle grid view">
         <Grid3X3 className="h-4 w-4 mr-1" />
-        Grid
+        {t('toggleView.grid')}
       </ToggleGroupItem>
       <ToggleGroupItem value="table" aria-label="Toggle table view">
         <Table2 className="h-4 w-4 mr-1" />
-        Table
+        {t('toggleView.table')}
       </ToggleGroupItem>
     </ToggleGroup>
   );
 };
 
-export default ListTableToggle;
+export default ViewToggle;

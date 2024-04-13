@@ -1,7 +1,6 @@
-export default async function Home() {
-  return (
-    <main className="flex flex-col items-center justify-between p-24">
-      asdasd
-    </main>
-  );
+import { redirect } from 'next/navigation';
+
+// This page only renders when the app is built statically (output: 'export')
+export default function RootPage() {
+  redirect('/en');
 }

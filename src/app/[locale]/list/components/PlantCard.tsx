@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import Image from 'next/image';
-import tree from '../../../../public/tree.jpg';
+import tree from '../../../../../public/tree.jpg';
 import Link from 'next/link';
 import { Plant } from '@prisma/client';
 import { CalendarHeart, Leaf, Ruler } from 'lucide-react';

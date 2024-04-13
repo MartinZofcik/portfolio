@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { Plant } from '@prisma/client';
-import PlantCard from '@/app/list/components/PlantCard';
-import ListTableToggle from '@/app/list/components/ListTableToggle';
+import PlantCard from '@/app/[locale]/list/components/PlantCard';
+import ViewToggle from '@/app/[locale]/list/components/ViewToggle';
 import { useSearchParams } from 'next/navigation';
-import PlantsDataTable from '@/app/list/components/PlantsDataTable';
+import PlantsDataTable from '@/app/[locale]/list/components/PlantsDataTable';
 
 interface IPlantProps {
   plants: Plant[];
@@ -21,7 +21,7 @@ const PlantsView: React.FC<IPlantProps> = ({ plants }) => {
   return (
     <div className="container">
       <div className="flex justify-end">
-        <ListTableToggle />
+        <ViewToggle />
       </div>
       {gridView ? (
         <div className="grid grid-cols-4 gap-6">
