@@ -2,8 +2,9 @@
 
 import { Grid3X3, Table2 } from 'lucide-react';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { useRouter, usePathname } from '@/navigation';
 
 const ViewToggle = () => {
   const { replace } = useRouter();

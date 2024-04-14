@@ -1,9 +1,10 @@
 'use client';
 
-import { ModeToggle } from '@/components/mode-toggle';
+import { ModeToggle } from '@/components/ModeToggle';
 import { Heart, Sprout } from 'lucide-react';
-import Link from 'next/link';
 import { useToast } from '@/components/ui/use-toast';
+import { LangToggle } from '@/components/LangToggle';
+import { Link } from '@/navigation';
 
 const Header = () => {
   const { toast } = useToast();
@@ -16,12 +17,13 @@ const Header = () => {
           {/*Naše kvetinky*/}
         </Link>
         <div className="flex items-center">
+          <LangToggle />
           <ModeToggle />
           <Heart
             size={25}
             strokeWidth={2.5}
             color="#ff0000"
-            className="ml-2 hover:cursor-pointer"
+            className="ml-6 mb-1 mr-2 hover:cursor-pointer"
             onClick={() => {
               toast({
                 title: 'Ľúbim Ťa <3',
