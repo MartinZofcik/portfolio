@@ -1,7 +1,22 @@
 {
   "Index": {
     "title": "Sub!",
-    "toggleView": {
+    "header": {
+      "langToggle": {
+        "sk": "Slovensky",
+        "en": "Anglicky"
+      },
+      "modeToggle": {
+        "dark": "Tmavý",
+        "light": "Svetlý",
+        "system": "Systém"
+      },
+      "authButton": {
+        "signOut": "Odhlásiť",
+        "signIn": "Prihlásiť"
+      }
+    },
+    "viewToggle": {
       "grid": "Mriežka",
       "table": "Tabuľka"
     }

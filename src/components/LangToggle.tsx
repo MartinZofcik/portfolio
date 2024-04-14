@@ -8,18 +8,19 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useLocale } from 'next-intl';
-// import { useTransition } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 import { useParams, useSearchParams } from 'next/navigation';
 import { useTransition } from 'react';
 import { useRouter, usePathname } from '@/navigation';
 
-export function LangToggle() {
+const LangToggle = () => {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
+
+  const t = useTranslations('Index');
 
   const handleChangeLocale = (nextLocale: string) => {
     startTransition(() => {
@@ -47,12 +48,14 @@ export function LangToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => handleChangeLocale('sk')}>
-          Slovak
+          {t('header.langToggle.sk')}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handleChangeLocale('en')}>
-          English
+          {t('header.langToggle.en')}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};
+
+export default LangToggle;

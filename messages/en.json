@@ -1,7 +1,22 @@
 {
   "Index": {
     "title": "Hello world!",
-    "toggleView": {
+    "header": {
+      "langToggle": {
+        "sk": "Slovak",
+        "en": "English"
+      },
+      "modeToggle": {
+        "dark": "Dark",
+        "light": "Light",
+        "system": "System"
+      },
+      "authButton": {
+        "signOut": "Sign Out",
+        "signIn": "Sign In"
+      }
+    },
+    "viewToggle": {
       "grid": "Grid",
       "table": "Table"
     }

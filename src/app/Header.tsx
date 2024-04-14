@@ -1,15 +1,18 @@
 'use client';
 
-import { ModeToggle } from '@/components/ModeToggle';
+import ModeToggle from '@/components/ModeToggle';
 import { Heart, Sprout } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
-import { LangToggle } from '@/components/LangToggle';
+import LangToggle from '@/components/LangToggle';
 import { Link } from '@/navigation';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
+import { useTranslations } from 'next-intl';
+import AccountDropdown from '@/components/AccountDropdown';
 
 const Header = () => {
   const { toast } = useToast();
+  const t = useTranslations('Index');
   const session = useSession();
 
   console.log(session);
@@ -22,22 +25,11 @@ const Header = () => {
           {/*Naše kvetinky*/}
         </Link>
         <div className="flex items-center">
-          <LangToggle />
-          <ModeToggle />
-          {session.data ? (
-            <Button className="ml-3" onClick={() => signOut()}>
-              Sign Out
-            </Button>
-          ) : (
-            <Button className="ml-3" onClick={() => signIn('google')}>
-              Sign In
-            </Button>
-          )}
           <Heart
             size={25}
             strokeWidth={2.5}
             color="#ff0000"
-            className="ml-6 mb-1 mr-2 hover:cursor-pointer"
+            className="mb-1 mr-4 hover:cursor-pointer"
             onClick={() => {
               toast({
                 title: 'Ľúbim Ťa <3',
@@ -46,6 +38,15 @@ const Header = () => {
               });
             }}
           />
+          <LangToggle />
+          <ModeToggle />
+          {session.data ? (
+            <AccountDropdown />
+          ) : (
+            <Button className="ml-3" onClick={() => signIn('google')}>
+              {t('header.authButton.signIn')}
+            </Button>
+          )}
         </div>
       </div>
     </header>
