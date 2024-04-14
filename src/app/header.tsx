@@ -5,9 +5,14 @@ import { Heart, Sprout } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { LangToggle } from '@/components/LangToggle';
 import { Link } from '@/navigation';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import { Button } from '@/components/ui/button';
 
 const Header = () => {
   const { toast } = useToast();
+  const session = useSession();
+
+  console.log(session);
 
   return (
     <header className="mx-auto px-4 py-1 bg-gray-100 dark:bg-gray-900 ">
@@ -19,6 +24,15 @@ const Header = () => {
         <div className="flex items-center">
           <LangToggle />
           <ModeToggle />
+          {session.data ? (
+            <Button className="ml-3" onClick={() => signOut()}>
+              Sign Out
+            </Button>
+          ) : (
+            <Button className="ml-3" onClick={() => signIn('google')}>
+              Sign In
+            </Button>
+          )}
           <Heart
             size={25}
             strokeWidth={2.5}
