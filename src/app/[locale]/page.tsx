@@ -1,10 +1,13 @@
-import { useTranslations } from 'next-intl';
+import { Link } from '@/navigation';
+import { Button } from '@/components/ui/button';
+import PageWrapper from '@/components/PageWrapper';
 
 export default function Home() {
-  const t = useTranslations('Index');
   return (
-    <main className="flex flex-col items-center justify-between p-24">
-      {t('title')}
-    </main>
+    <PageWrapper>
+      <Link href="/list">
+        <Button>List</Button>
+      </Link>
+    </PageWrapper>
   );
 }

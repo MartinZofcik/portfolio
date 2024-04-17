@@ -31,7 +31,7 @@ export default function LocaleLayout({
       <body className={inter.className}>
         <Providers locale={locale} messages={messages}>
           <Header />
-          <NextTopLoader />
+          <NextTopLoader showSpinner={false} />
           {children}
           <Toaster />
         </Providers>

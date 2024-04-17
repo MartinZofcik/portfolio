@@ -15,10 +15,8 @@ const Header = () => {
   const t = useTranslations('Index');
   const session = useSession();
 
-  console.log(session);
-
   return (
-    <header className="mx-auto px-4 py-1 bg-gray-100 dark:bg-gray-900 ">
+    <header className="mx-auto px-4 py-1 bg-gray-100 dark:bg-slate-900 ">
       <div className="flex items-center justify-between ">
         <Link href="/" className="flex items-center pl-4 text-2xl font-medium">
           <Sprout color="#22ac20" className="pr-1" height={50} width={50} />
@@ -32,7 +30,7 @@ const Header = () => {
             className="mb-1 mr-4 hover:cursor-pointer"
             onClick={() => {
               toast({
-                title: 'Ľúbim Ťa <3',
+                title: 'Ľúbim Ťa',
                 description: 'ty tlustá kačica',
                 // action: <ToastAction altText="gud">Dobre ti tak</ToastAction>,
               });
@@ -40,7 +38,7 @@ const Header = () => {
           />
           <LangToggle />
           <ModeToggle />
-          {session.data ? (
+          {session.status === 'authenticated' ? (
             <AccountDropdown />
           ) : (
             <Button className="ml-3" onClick={() => signIn('google')}>

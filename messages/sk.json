@@ -1,6 +1,5 @@
 {
   "Index": {
-    "title": "Sub!",
     "header": {
       "langToggle": {
         "sk": "Slovensky",
@@ -19,6 +18,7 @@
     "viewToggle": {
       "grid": "Mriežka",
       "table": "Tabuľka"
-    }
+    },
+    "addPlantButton": "Pridať"
   }
 }

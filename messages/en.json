@@ -1,6 +1,5 @@
 {
   "Index": {
-    "title": "Hello world!",
     "header": {
       "langToggle": {
         "sk": "Slovak",
@@ -19,6 +18,7 @@
     "viewToggle": {
       "grid": "Grid",
       "table": "Table"
-    }
+    },
+    "addPlantButton": "Add"
   }
 }
