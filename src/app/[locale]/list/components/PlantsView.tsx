@@ -6,7 +6,8 @@ import PlantCard from '@/app/[locale]/list/components/PlantCard';
 import ViewToggle from '@/app/[locale]/list/components/ViewToggle';
 import { useSearchParams } from 'next/navigation';
 import PlantsDataTable from '@/app/[locale]/list/components/PlantsDataTable';
-import AddPlantButton from '@/app/[locale]/list/components/AddPlantButton';
+import NavigationButton from '@/components/NavigationButton';
+import { Plus } from 'lucide-react';
 
 interface IPlantProps {
   plants: Plant[];
@@ -22,7 +23,12 @@ const PlantsView: React.FC<IPlantProps> = ({ plants }) => {
   return (
     <div className="container">
       <div className="flex justify-end">
-        <AddPlantButton className="mr-10" />
+        <NavigationButton
+          href="/plant/new"
+          className="mr-10"
+          titleTranslationKey="addPlantButton"
+          Icon={<Plus width={16} height={16} />}
+        />
         <ViewToggle />
       </div>
       {gridView ? (

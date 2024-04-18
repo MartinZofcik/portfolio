@@ -5,9 +5,15 @@ import { revalidatePath, unstable_noStore } from 'next/cache';
 import { createPlantSchema } from '@/app/[locale]/plant/components/schema';
 import { z } from 'zod';
 import { redirect } from '@/navigation';
+import { getServerSession } from 'next-auth';
 
-export async function getAllPlants() {
-  return prisma.plant.findMany();
+export async function getPlantsOfCurrentUser() {
+  const session = getServerSession();
+  return prisma.plant.findMany({
+    where: {
+      id: '1',
+    },
+  });
 }
 
 export async function getPlantById(id: string) {

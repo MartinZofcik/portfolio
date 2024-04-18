@@ -27,11 +27,11 @@ const ViewToggle = () => {
     >
       <ToggleGroupItem value="grid" aria-label="Toggle grid view">
         <Grid3X3 className="h-4 w-4 mr-1" />
-        {t('viewToggle.grid')}
+        {/*{t('viewToggle.grid')}*/}
       </ToggleGroupItem>
       <ToggleGroupItem value="table" aria-label="Toggle table view">
         <Table2 className="h-4 w-4 mr-1" />
-        {t('viewToggle.table')}
+        {/*{t('viewToggle.table')}*/}
       </ToggleGroupItem>
     </ToggleGroup>
   );

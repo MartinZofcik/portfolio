@@ -85,13 +85,6 @@ export const columns: ColumnDef<Plant>[] = [
     cell: ({ row }) => <div className="capitalize">{row.getValue('size')}</div>,
   },
   {
-    accessorKey: 'age_months',
-    header: 'age_months',
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue('age_months')}</div>
-    ),
-  },
-  {
     accessorKey: 'recommended_place',
     header: 'recommended_place',
     cell: ({ row }) => (
@@ -99,10 +92,10 @@ export const columns: ColumnDef<Plant>[] = [
     ),
   },
   {
-    accessorKey: 'leave_number',
-    header: 'leave_number',
+    accessorKey: 'leave_count',
+    header: 'leave_count',
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue('leave_number')}</div>
+      <div className="capitalize">{row.getValue('leave_count')}</div>
     ),
   },
   {

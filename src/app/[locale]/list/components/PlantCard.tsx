@@ -29,14 +29,10 @@ const PlantCard: React.FC<PlantProps> = ({ plant }) => {
         </CardHeader>
         <CardContent>
           <Image src={tree} alt="Picture of the plant" />
-          <div className="flex py-3 px-4 justify-between text-muted-foreground">
-            <div className="flex items-end">
-              <CalendarHeart height={18} width={18} />
-              <p className="text-xs ml-1"> {plant.age_months ?? '-'}m</p>
-            </div>
+          <div className="flex py-3 px-4 justify-around text-muted-foreground">
             <div className="flex items-end">
               <Leaf height={18} width={18} />
-              <p className="text-xs ml-1"> {plant.leave_number ?? '-'}</p>
+              <p className="text-xs ml-1"> {plant.leave_count ?? '-'}</p>
             </div>
             <div className="flex items-end">
               <Ruler height={18} width={18} />

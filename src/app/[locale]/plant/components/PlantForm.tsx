@@ -20,6 +20,11 @@ import { createPlantSchema } from '@/app/[locale]/plant/components/schema';
 
 const initialForm = {
   latin_name: '',
+  slovak_name: '',
+  size: '',
+  description: '',
+  recommended_place: '',
+  leave_count: 1,
 };
 
 const PlantForm = () => {
