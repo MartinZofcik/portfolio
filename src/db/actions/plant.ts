@@ -5,15 +5,22 @@ import { revalidatePath, unstable_noStore } from 'next/cache';
 import { createPlantSchema } from '@/app/[locale]/plant/components/schema';
 import { z } from 'zod';
 import { redirect } from '@/navigation';
-import { getServerSession } from 'next-auth';
+import {getServerSession} from 'next-auth';
+import {authOptions} from '@/app/api/auth/[...nextauth]/route';
 
-export async function getPlantsOfCurrentUser() {
-  const session = getServerSession();
-  return prisma.plant.findMany({
-    where: {
-      id: '1',
-    },
-  });
+export async function getPlantsByOwner() {
+  const session = await getServerSession(authOptions)
+  console.log(session)
+  if (session) {
+    return prisma.plant.findMany(
+      {
+        where: {
+          ownerId: session.user.id,
+        },
+      }
+    );
+  }
+  else return [];
 }
 
 export async function getPlantById(id: string) {
@@ -27,6 +34,7 @@ export async function getPlantById(id: string) {
 export async function createPlantAction(
   values: z.infer<typeof createPlantSchema>,
 ) {
+  const session = await getServerSession(authOptions);
   const result = createPlantSchema.safeParse(values);
 
   if (!result.success) {
@@ -36,7 +44,10 @@ export async function createPlantAction(
   const { data } = result;
 
   await prisma.plant.create({
-    data,
+    data: { ...data,
+
+
+      ownerId: session.user.id },
   });
 
   revalidatePath('/list');

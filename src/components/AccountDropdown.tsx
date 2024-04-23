@@ -17,13 +17,12 @@ const AccountDropdown = () => {
     <DropdownMenu>
       <DropdownMenuTrigger className="ml-3">
         <Avatar>
-          {session.data?.user?.image ? (
+          {session.data?.user?.image && (
             <>
-              <AvatarImage src={session.data?.user?.image} />
-              <AvatarFallback>USER</AvatarFallback>
+              <AvatarImage src={session.data?.user?.image} referrerPolicy={"no-referrer"}/>
+              <AvatarFallback>AA</AvatarFallback>
             </>
-          ) : (
-            <AvatarFallback>USER</AvatarFallback>
+
           )}
         </Avatar>
       </DropdownMenuTrigger>

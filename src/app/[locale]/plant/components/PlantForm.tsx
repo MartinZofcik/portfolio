@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import SubmitButton from '@/components/SubmitButton';
-import { createPlantAction } from '@/db/actions';
+import { createPlantAction } from '@/db/actions/plant';
 import { createPlantSchema } from '@/app/[locale]/plant/components/schema';
 
 const initialForm = {

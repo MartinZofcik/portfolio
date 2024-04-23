@@ -19,7 +19,6 @@ export function Providers({
       <NextIntlClientProvider
         locale={locale}
         messages={messages}
-        timeZone="Europe/Bratislava"
       >
         <ThemeProvider
           attribute="class"
