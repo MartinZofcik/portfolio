@@ -19,6 +19,13 @@
       "grid": "Grid",
       "table": "Table"
     },
-    "addPlantButton": "Add"
+    "addPlantButton": "Add",
+    "plantForm": {
+      "latin_name": "",
+      "slovak_name": "",
+      "size": "",
+      "description": "",
+      "recommended_place": ""
+}
   }
 }

@@ -11,8 +11,8 @@ import { useMessages } from 'next-intl';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Naše kvetinky',
-  description: 'App for our plants',
+  title: 'iPlants',
+  description: 'App for your plants',
 };
 
 export default function LocaleLayout({
