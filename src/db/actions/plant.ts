@@ -6,7 +6,7 @@ import { createPlantSchema } from '@/app/[locale]/plant/components/schema';
 import { z } from 'zod';
 import { redirect } from '@/navigation';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
 
 export async function getPlantsByOwner() {
   const session = await getServerSession(authOptions);
