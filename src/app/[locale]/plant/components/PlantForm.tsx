@@ -2,7 +2,6 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { useFormState } from 'react-dom';
 import { z } from 'zod';
 import {
   Form,
@@ -14,45 +13,48 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import SubmitButton from '@/components/SubmitButton';
-import { createPlantAction } from '@/db/actions/plant';
 import { createPlantSchema } from '@/app/[locale]/plant/components/schema';
 import { useTranslations } from 'next-intl';
 import {
   Select,
   SelectValue,
   SelectTrigger,
-  SelectGroup,
   SelectContent,
   SelectItem,
-  SelectLabel,
 } from '@/components/ui/select';
+import { Plant, Size } from '@prisma/client';
+import { Textarea } from '@/components/ui/textarea';
 
-const Size = {
-  VERY_SMALL: 'VERY_SMALL',
-  SMALL: 'SMALL',
-  MEDIUM: 'MEDIUM',
-  LARGE: 'LARGE',
-  VERY_LARGE: 'VERY_LARGE',
+type TPlantFormProps = {
+  onSubmit: (data: z.infer<typeof createPlantSchema>) => void;
+  plant?: Plant;
 };
 
 const initialForm = {
   latin_name: '',
   slovak_name: '',
-  size: '',
+  size: Size.MEDIUM,
   description: '',
   recommended_place: '',
 };
 
-const PlantForm = () => {
+const PlantForm: React.FC<TPlantFormProps> = ({ onSubmit, plant = null }) => {
   const t = useTranslations('Index');
+
+  const initialPlant = plant
+    ? {
+        latin_name: plant.latin_name,
+        slovak_name: plant.slovak_name ?? '',
+        size: plant.size ?? Size.MEDIUM,
+        description: plant.description ?? '',
+        recommended_place: plant.recommended_place ?? '',
+      }
+    : undefined;
+
   const form = useForm<z.infer<typeof createPlantSchema>>({
     resolver: zodResolver(createPlantSchema),
-    defaultValues: initialForm,
+    defaultValues: !!plant ? initialPlant : initialForm,
   });
-
-  async function onSubmit(values: z.infer<typeof createPlantSchema>) {
-    await createPlantAction(values);
-  }
 
   return (
     <Form {...form}>
@@ -84,32 +86,64 @@ const PlantForm = () => {
             </FormItem>
           )}
         />
-        {/*<FormField*/}
-        {/*  control={form.control}*/}
-        {/*  name="size"*/}
-        {/*  render={({ field }) => (*/}
-        {/*    <FormItem>*/}
-        {/*      <FormLabel>Email</FormLabel>*/}
-        {/*      <Select onValueChange={field.onChange}>*/}
-        {/*        <FormControl>*/}
-        {/*          <SelectTrigger>*/}
-        {/*            <SelectValue placeholder="Select size" />*/}
-        {/*          </SelectTrigger>*/}
-        {/*        </FormControl>*/}
-        {/*        <SelectContent>*/}
-        {/*          <SelectItem value="m@example.com">m@example.com</SelectItem>*/}
-        {/*          <SelectItem value="m@google.com">m@google.com</SelectItem>*/}
-        {/*          <SelectItem value="m@support.com">m@support.com</SelectItem>*/}
-        {/*        </SelectContent>*/}
-        {/*      </Select>*/}
-        {/*      /!*<FormDescription>*!/*/}
-        {/*      /!*  You can manage email addresses in your{" "}*!/*/}
-        {/*      /!*  <Link href="/examples/forms">email settings</Link>.*!/*/}
-        {/*      /!*</FormDescription>*!/*/}
-        {/*      <FormMessage />*/}
-        {/*    </FormItem>*/}
-        {/*  )}*/}
-        {/*/>*/}
+        <FormField
+          control={form.control}
+          name="size"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t('plantForm.size.title')} </FormLabel>
+              <Select onValueChange={field.onChange}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder={t('plantForm.size.selectSize')} />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {(Object.keys(Size) as Array<keyof typeof Size>).map(
+                    (size) => (
+                      <SelectItem key={size} value={size}>
+                        {t(`plantForm.size.${size}`)}
+                      </SelectItem>
+                    ),
+                  )}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="description"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t('plantForm.description.title')}</FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder={t('plantForm.description.placeholder')}
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="recommended_place"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t('plantForm.recommended_place.title')}</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder={t('plantForm.recommended_place.placeholder')}
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <SubmitButton>Submit</SubmitButton>
       </form>
     </Form>

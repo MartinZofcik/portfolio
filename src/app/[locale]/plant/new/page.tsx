@@ -1,10 +1,10 @@
-import PlantForm from '@/app/[locale]/plant/components/PlantForm';
 import PageWrapper from '@/components/PageWrapper';
+import CreatePlantForm from '@/app/[locale]/plant/new/CreatePlantForm';
 
 export default function NewPlantPage() {
   return (
     <PageWrapper>
-      <PlantForm />
+      <CreatePlantForm />
     </PageWrapper>
   );
 }

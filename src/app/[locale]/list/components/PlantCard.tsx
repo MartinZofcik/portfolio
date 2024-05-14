@@ -21,30 +21,36 @@ interface PlantProps {
 
 const PlantCard: React.FC<PlantProps> = ({ plant }) => {
   return (
-    <Link href={`plant/${plant.id}`}>
-      <Card key={plant?.id} className="h-full flex flex-col">
+    <Card key={plant?.id} className="h-full flex flex-col">
+      <Link href={`plant/${plant.id}`}>
         <CardHeader className="h-28">
-          <CardTitle>{plant?.latin_name}</CardTitle>
+          <CardTitle>
+            <div>{plant?.latin_name}</div>
+          </CardTitle>
           <CardDescription>{plant?.slovak_name}</CardDescription>
         </CardHeader>
         <CardContent>
           <Image src={tree} alt="Picture of the plant" />
-          <div className="flex py-3 px-4 justify-around text-muted-foreground">
-            <div className="flex items-end">
-              <Leaf height={18} width={18} />
-              <p className="text-xs ml-1"> {plant.leave_count ?? '-'}</p>
-            </div>
-            <div className="flex items-end">
-              <Ruler height={18} width={18} />
+          <div className="flex flex-col pb-3 px-2 justify-start text-muted-foreground">
+            <div className="flex items-start">
+              <Ruler height={16} width={16} />
               <p className="text-xs ml-1"> {plant.size ?? '-'}</p>
             </div>
+            <div className="flex items-start mt-2">
+              <p className="text-xs max-h-12 overflow-hidden">
+                {plant?.recommended_place ?? '-'}
+              </p>
+            </div>
           </div>
+
           {plant?.description && (
-            <p className="text-xs h-32 overflow-clip">{plant?.description}</p>
+            <p className="text-xs max-h-48 overflow-hidden">
+              {plant?.description}
+            </p>
           )}
         </CardContent>
-      </Card>
-    </Link>
+      </Link>
+    </Card>
   );
 };
 

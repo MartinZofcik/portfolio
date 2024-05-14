@@ -19,6 +19,27 @@
       "grid": "Mriežka",
       "table": "Tabuľka"
     },
-    "addPlantButton": "Pridať"
+    "addPlantButton": "Pridať",
+    "plantForm": {
+      "latin_name": "Latinský názov",
+      "slovak_name": "Slovenský názov",
+      "size": {
+        "title": "Veľkosť",
+        "selectSize": "Vyberte...",
+        "VERY_SMALL": "veľmi malá",
+        "SMALL": "malá",
+        "MEDIUM": "stredná",
+        "LARGE": "veľká",
+        "VERY_LARGE": "veľmi veľká"
+      },
+      "description": {
+        "title": "Podrobnosti",
+        "placeholder": "Pochádza pôvodne z Kanárskych ostrovov..."
+      },
+      "recommended_place": {
+        "title": "Odporúčané miesto",
+        "placeholder": "Miesto s rozptýleným svetlom..."
+      }
+    }
   }
 }

@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { getPlantById } from '@/db/actions/plant';
 import { getTranslations } from 'next-intl/server';
 import PageWrapper from '@/components/PageWrapper';
+import EditPlantForm from '@/app/[locale]/plant/[plantId]/EditPlantForm';
 
 export default async function PlantDetail({
   params,
@@ -12,12 +13,13 @@ export default async function PlantDetail({
   // const t = await getTranslations('Index');
   const plant = await getPlantById(params.plantId);
 
-  console.log(plant);
+  if (!plant) {
+    return null;
+  }
+
   return (
     <PageWrapper>
-      <Link href="/list">
-        <Button>Listaa</Button>
-      </Link>
+      <EditPlantForm plantId={params.plantId} plant={plant} />
     </PageWrapper>
   );
 }

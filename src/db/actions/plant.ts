@@ -1,7 +1,7 @@
 'use server';
 
 import prisma from '@/db/db';
-import { revalidatePath, unstable_noStore } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 import { createPlantSchema } from '@/app/[locale]/plant/components/schema';
 import { z } from 'zod';
 import { redirect } from '@/navigation';
@@ -48,5 +48,32 @@ export async function createPlantAction(
   });
 
   revalidatePath('/list');
+  redirect('/list');
+}
+
+export async function editPlantAction(
+  plantId: string,
+  values: z.infer<typeof createPlantSchema>,
+) {
+  const result = createPlantSchema.safeParse(values);
+
+  if (!result.success) {
+    return result.error.formErrors.fieldErrors;
+  }
+
+  const { data } = result;
+
+  await prisma.plant.update({
+    where: {
+      id: plantId,
+    },
+    data: {
+      ...data,
+    },
+  });
+
+  revalidatePath(`/plant/${plantId}`);
+  // redirect(`/plant/${plantId}`);
+
   redirect('/list');
 }

@@ -11,14 +11,14 @@ model Plant {
   id                String      @id @default(uuid())
   latin_name        String
   slovak_name       String?
-  size              Size?
+  size              Size
   description       String?
   recommended_place String?
   created_at        DateTime    @default(now())
   updated_at        DateTime    @updatedAt
 
   ownerId           String
-  owner             User        @relation(fields: [ownerId], references: [id])
+  // owner             User        @relation(fields: [ownerId], references: [id])
 }
 
 enum Size {
@@ -29,72 +29,75 @@ enum Size {
   VERY_LARGE
 }
 
-// =============================================== NEXT AUTH
 
-model User {
-  id            String            @id @default(cuid())
-  name          String?
-  email         String            @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  Authenticator Authenticator[]
-  createdAt     DateTime          @default(now())
-  updatedAt     DateTime          @updatedAt
 
-  plants        Plant[]
-}
 
-model Account {
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String?
-  access_token      String?
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String?
-  session_state     String?
-
-  createdAt         DateTime    @default(now())
-  updatedAt         DateTime    @updatedAt
-
-  user              User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@id([provider, providerAccountId])
-}
-
-model Session {
-  sessionToken String       @unique
-  userId       String
-  expires      DateTime
-  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
-}
-
-model VerificationToken {
-  identifier String
-  token      String
-  expires    DateTime
-
-  @@id([identifier, token])
-}
-
-model Authenticator {
-  id                   String   @id @default(cuid())
-  credentialID         String   @unique
-  userId               String
-  providerAccountId    String
-  credentialPublicKey  String
-  counter              Int
-  credentialDeviceType String
-  credentialBackedUp   Boolean
-  transports           String?
-
-  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
+// // =============================================== NEXT AUTH
+//
+// model User {
+//   id            String            @id @default(cuid())
+//   name          String?
+//   email         String            @unique
+//   emailVerified DateTime?
+//   image         String?
+//   accounts      Account[]
+//   sessions      Session[]
+//   Authenticator Authenticator[]
+//   createdAt     DateTime          @default(now())
+//   updatedAt     DateTime          @updatedAt
+//
+//   // plants        Plant[]
+// }
+//
+// model Account {
+//   userId            String
+//   type              String
+//   provider          String
+//   providerAccountId String
+//   refresh_token     String?
+//   access_token      String?
+//   expires_at        Int?
+//   token_type        String?
+//   scope             String?
+//   id_token          String?
+//   session_state     String?
+//
+//   createdAt         DateTime    @default(now())
+//   updatedAt         DateTime    @updatedAt
+//
+//   user              User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+//
+//   @@id([provider, providerAccountId])
+// }
+//
+// model Session {
+//   sessionToken String       @unique
+//   userId       String
+//   expires      DateTime
+//   user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+//
+//   createdAt    DateTime     @default(now())
+//   updatedAt    DateTime     @updatedAt
+// }
+//
+// model VerificationToken {
+//   identifier String
+//   token      String
+//   expires    DateTime
+//
+//   @@id([identifier, token])
+// }
+//
+// model Authenticator {
+//   id                   String   @id @default(cuid())
+//   credentialID         String   @unique
+//   userId               String
+//   providerAccountId    String
+//   credentialPublicKey  String
+//   counter              Int
+//   credentialDeviceType String
+//   credentialBackedUp   Boolean
+//   transports           String?
+//
+//   user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+// }

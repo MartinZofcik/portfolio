@@ -5,10 +5,11 @@ import { Heart, Sprout } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import LangToggle from '@/components/LangToggle';
 import { Link } from '@/navigation';
-import { signIn, signOut, useSession } from 'next-auth/react';
-import { Button } from '@/components/ui/button';
+import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import AccountDropdown from '@/components/AccountDropdown';
+import SignInButton from '@/components/SignInButton';
+import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 
 const Header = () => {
   const { toast } = useToast();
@@ -17,11 +18,23 @@ const Header = () => {
 
   return (
     <header className="mx-auto px-4 py-2 bg-gray-100 dark:bg-slate-900 ">
-      <div className="flex items-center justify-between ">
-        <Link href="/" className="flex items-center pl-4 text-2xl font-medium">
-          <Sprout color="#22ac20" className="mb-1" height={35} width={35} />
-          iPlants
-        </Link>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center justify-center">
+          <Link
+            href="/"
+            className="flex items-center pl-4 text-2xl font-medium"
+          >
+            <Sprout color="#22ac20" className="mb-1" height={35} width={35} />
+            iPlants
+          </Link>
+          {session.data && (
+            <div className="ml-7">
+              <Link className={navigationMenuTriggerStyle()} href="/list">
+                List
+              </Link>
+            </div>
+          )}
+        </div>
         <div className="flex items-center">
           <Heart
             size={25}
@@ -31,7 +44,7 @@ const Header = () => {
             onClick={() => {
               toast({
                 title: 'Ľúbim Ťa',
-                description: 'ty tlustá kačica',
+                description: 'ty tlustá kačica <3',
                 // action: <ToastAction altText="gud">Dobre ti tak</ToastAction>,
               });
             }}
@@ -41,9 +54,7 @@ const Header = () => {
           {session.status === 'authenticated' ? (
             <AccountDropdown />
           ) : (
-            <Button className="ml-3" onClick={() => signIn('google')}>
-              {t('header.authButton.signIn')}
-            </Button>
+            <SignInButton />
           )}
         </div>
       </div>

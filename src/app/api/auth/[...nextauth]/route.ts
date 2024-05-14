@@ -1,12 +1,7 @@
 import NextAuth from 'next-auth';
-import { PrismaAdapter } from '@auth/prisma-adapter';
 import GoogleProvider from 'next-auth/providers/google';
-import type { Adapter } from 'next-auth/adapters';
-import db from '@/db/db';
-import { getUserByEmail } from '@/db/actions/user';
 
 export const authOptions = {
-  adapter: PrismaAdapter(db) as Adapter,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -22,13 +17,21 @@ export const authOptions = {
   ],
   callbacks: {
     // @ts-ignore
-    async session({ session }) {
-      session.user = await getUserByEmail(session.user.email);
-      console.log(session);
+    jwt({ token, account, user }) {
+      if (account) {
+        // token.accessToken = account.access_token;
+        token.id = user?.id;
+      }
+      return token;
+    },
+    // @ts-ignore
+    session({ session, token }) {
+      // session.accessToken = token.accessToken;
+      session.user.id = token.id;
       return session;
     },
   },
-  timezone: 'Europe/Bratislava',
+  timeZone: 'Europe/Bratislava',
 };
 
 const handler = NextAuth(authOptions);
