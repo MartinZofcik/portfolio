@@ -16,6 +16,9 @@ export async function getPlantsByOwner() {
       where: {
         ownerId: session.user.id,
       },
+      orderBy: {
+        created_at: 'desc',
+      },
     });
   } else return [];
 }
@@ -76,4 +79,22 @@ export async function editPlantAction(
   // redirect(`/plant/${plantId}`);
 
   redirect('/list');
+}
+
+export async function editIsFavorite(plantId: string, isFavorite: boolean) {
+  await prisma.plant.update({
+    where: {
+      id: plantId,
+    },
+    data: {
+      is_favorite: !isFavorite,
+    },
+  });
+
+  revalidatePath('/list');
+
+  // revalidatePath(`/plant/${plantId}`);
+  // redirect(`/plant/${plantId}`);
+
+  // redirect('/list');
 }

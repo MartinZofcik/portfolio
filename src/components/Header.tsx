@@ -18,10 +18,11 @@ const Header = () => {
 
   return (
     <header className="mx-auto px-4 py-2 bg-gray-100 dark:bg-slate-900 ">
+      {/*sticky top-0 z-50*/}
       <div className="flex items-center justify-between">
         <div className="flex items-center justify-center">
           <Link
-            href="/"
+            href="/public"
             className="flex items-center pl-4 text-2xl font-medium"
           >
             <Sprout color="#22ac20" className="mb-1" height={35} width={35} />

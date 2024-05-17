@@ -20,7 +20,12 @@
       "table": "Tabuľka"
     },
     "addPlantButton": "Pridať",
+    "form": {
+      "submit": "Uložiť"
+    },
     "plantForm": {
+      "create": "Pridať rastlinku",
+      "edit": "Upraviť rastlinku",
       "latin_name": "Latinský názov",
       "slovak_name": "Slovenský názov",
       "size": {

@@ -32,7 +32,8 @@ const PlantsView: React.FC<IPlantProps> = ({ plants }) => {
         <ViewToggle />
       </div>
       {gridView ? (
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-4 gap-5">
+          {/*{[].concat(...Array(10).fill(plants)).map((plant: Plant, index) => (*/}
           {plants.map((plant: Plant, index) => (
             <PlantCard key={index} plant={plant} />
           ))}

@@ -92,7 +92,7 @@ const PlantForm: React.FC<TPlantFormProps> = ({ onSubmit, plant = null }) => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t('plantForm.size.title')} </FormLabel>
-              <Select onValueChange={field.onChange}>
+              <Select value={field.value} onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder={t('plantForm.size.selectSize')} />
@@ -144,7 +144,9 @@ const PlantForm: React.FC<TPlantFormProps> = ({ onSubmit, plant = null }) => {
             </FormItem>
           )}
         />
-        <SubmitButton>Submit</SubmitButton>
+        <div className="flex justify-end">
+          <SubmitButton>{t('form.submit')}</SubmitButton>
+        </div>
       </form>
     </Form>
   );

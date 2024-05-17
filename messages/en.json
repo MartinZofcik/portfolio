@@ -20,7 +20,12 @@
       "table": "Table"
     },
     "addPlantButton": "Add",
+    "form": {
+      "submit": "Submit"
+    },
     "plantForm": {
+      "create": "Add plant",
+      "edit": "Edit plant",
       "latin_name": "Latin Name",
       "slovak_name": "Slovak Name",
       "size": {
