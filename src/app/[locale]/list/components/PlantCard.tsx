@@ -13,9 +13,10 @@ import tree from '../../../../../public/tree.jpg';
 import { Plant } from '@prisma/client';
 import { Leaf, Pencil, Ruler } from 'lucide-react';
 import { ModalContext } from '@/app/context/modal-provider';
-import PlantForm from '@/app/[locale]/plant/components/PlantForm';
 import { useTranslations } from 'next-intl';
 import { editIsFavorite } from '@/db/actions/plant';
+import EditPlantForm from '@/app/[locale]/plant/[plantId]/EditPlantForm';
+import { useToast } from '@/components/ui/use-toast';
 
 interface PlantProps {
   plant: Plant;
@@ -24,6 +25,7 @@ interface PlantProps {
 const PlantCard: React.FC<PlantProps> = ({ plant }) => {
   const t = useTranslations('Index');
   const { toggleModal } = React.useContext(ModalContext);
+  const { toast } = useToast();
 
   const handleEdit = () => {
     toggleModal({
@@ -34,13 +36,17 @@ const PlantCard: React.FC<PlantProps> = ({ plant }) => {
           {t('plantForm.edit')}
         </div>
       ),
-      content: <PlantForm plant={plant} onSubmit={() => console.log(plant)} />,
+      content: <EditPlantForm plant={plant} />,
     });
   };
 
   async function handleIsFavorite(id: string, isFavorite: boolean | null) {
     if (typeof isFavorite === 'boolean') {
-      await editIsFavorite(id, isFavorite).then();
+      const { status, message } = await editIsFavorite(id, isFavorite);
+      toast({
+        variant: status === 'success' ? 'default' : 'destructive',
+        title: message,
+      });
     }
   }
 

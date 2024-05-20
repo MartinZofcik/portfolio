@@ -7,13 +7,12 @@ import PlantForm from '@/app/[locale]/plant/components/PlantForm';
 import { Plant } from '@prisma/client';
 
 type IEditPlantFormProps = {
-  plantId: string;
   plant: Plant;
 };
 
-const EditPlantForm: React.FC<IEditPlantFormProps> = ({ plantId, plant }) => {
+const EditPlantForm: React.FC<IEditPlantFormProps> = ({ plant }) => {
   async function onSubmit(values: z.infer<typeof createPlantSchema>) {
-    await editPlantAction(plantId, values);
+    await editPlantAction(plant.id, values);
   }
 
   return <PlantForm plant={plant} onSubmit={onSubmit} />;

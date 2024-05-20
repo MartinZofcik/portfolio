@@ -30,5 +30,4 @@ export const authOptions = {
       return session;
     },
   },
-  timeZone: 'Europe/Bratislava',
 };

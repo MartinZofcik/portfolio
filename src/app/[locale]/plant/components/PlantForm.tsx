@@ -58,7 +58,7 @@ const PlantForm: React.FC<TPlantFormProps> = ({ onSubmit, plant = null }) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-3/12">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
           name="latin_name"

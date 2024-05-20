@@ -82,16 +82,23 @@ export async function editPlantAction(
 }
 
 export async function editIsFavorite(plantId: string, isFavorite: boolean) {
-  await prisma.plant.update({
-    where: {
-      id: plantId,
-    },
-    data: {
-      is_favorite: !isFavorite,
-    },
-  });
-
-  revalidatePath('/list');
+  try {
+    await prisma.plant.update({
+      where: {
+        id: plantId,
+      },
+      data: {
+        is_favorite: !isFavorite,
+      },
+    });
+    revalidatePath('/list');
+    return { status: 'success', message: 'Saved' };
+  } catch (err: any) {
+    return {
+      status: 'error',
+      message: err.message,
+    };
+  }
 
   // revalidatePath(`/plant/${plantId}`);
   // redirect(`/plant/${plantId}`);

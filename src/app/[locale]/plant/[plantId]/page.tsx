@@ -19,7 +19,7 @@ export default async function PlantDetail({
 
   return (
     <PageWrapper>
-      <EditPlantForm plantId={params.plantId} plant={plant} />
+      <EditPlantForm plant={plant} />
     </PageWrapper>
   );
 }
