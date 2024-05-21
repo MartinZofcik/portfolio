@@ -33,7 +33,7 @@ export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
         open={Boolean(modalData?.isOpen)}
         onOpenChange={() => toggleModal({ isOpen: false, content: undefined })}
       >
-        <DialogOverlay />
+        {/*<DialogOverlay />*/}
         <DialogContent>
           {modalData?.title && (
             <DialogTitle className="mb-2">{modalData?.title}</DialogTitle>

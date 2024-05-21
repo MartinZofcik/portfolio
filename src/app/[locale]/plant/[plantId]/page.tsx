@@ -1,9 +1,6 @@
-import { Link } from '@/navigation';
-import { Button } from '@/components/ui/button';
-import { getPlantById } from '@/db/actions/plant';
-import { getTranslations } from 'next-intl/server';
 import PageWrapper from '@/components/PageWrapper';
 import EditPlantForm from '@/app/[locale]/plant/[plantId]/EditPlantForm';
+import { getPlantById } from '@/db/actions/plant/Read';
 
 export default async function PlantDetail({
   params,

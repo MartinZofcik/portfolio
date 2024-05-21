@@ -10,6 +10,7 @@ import { useTranslations } from 'next-intl';
 import AccountDropdown from '@/components/AccountDropdown';
 import SignInButton from '@/components/SignInButton';
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
+import { ToastAction } from '@/components/ui/toast';
 
 const Header = () => {
   const { toast } = useToast();
@@ -22,7 +23,7 @@ const Header = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center justify-center">
           <Link
-            href="/public"
+            href="/"
             className="flex items-center pl-4 text-2xl font-medium"
           >
             <Sprout color="#22ac20" className="mb-1" height={35} width={35} />
@@ -46,17 +47,14 @@ const Header = () => {
               toast({
                 title: 'Ľúbim Ťa',
                 description: 'ty tlustá kačica <3',
-                // action: <ToastAction altText="gud">Dobre ti tak</ToastAction>,
+                variant: 'destructive',
+                action: <ToastAction altText="gud">Dobre ti tak</ToastAction>,
               });
             }}
           />
           <LangToggle />
           <ModeToggle />
-          {session.status === 'authenticated' ? (
-            <AccountDropdown />
-          ) : (
-            <SignInButton />
-          )}
+          {session.data ? <AccountDropdown /> : <SignInButton />}
         </div>
       </div>
     </header>

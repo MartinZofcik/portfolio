@@ -21,29 +21,45 @@
     },
     "addPlantButton": "Add",
     "form": {
-      "submit": "Submit"
+      "submit": "Submit",
+      "status": {
+        "unauthorized": {
+          "title":"Authorization Error",
+          "description":"Unauthorized Access"
+        },
+        "success": {
+          "title":"Success",
+          "description":"Data has been saved"
+        },
+        "error": {
+          "title":"Error",
+          "description":"An Error has occured"
+        }
+      }
     },
     "plantForm": {
       "create": "Add plant",
       "edit": "Edit plant",
-      "latin_name": "Latin Name",
-      "slovak_name": "Slovak Name",
-      "size": {
-        "title": "Size",
-        "selectSize": "Select...",
-        "VERY_SMALL": "very small",
-        "SMALL": "small",
-        "MEDIUM": "medium",
-        "LARGE": "large",
-        "VERY_LARGE": "very large"
-      },
-      "description": {
-        "title": "Description",
-        "placeholder": "Originally from the Canary Islands..."
-      },
-      "recommended_place": {
-        "title": "Recommended Place",
-        "placeholder": "A place with diffused light..."
+      "fields": {
+        "latin_name": "Latin Name",
+        "slovak_name": "Slovak Name",
+        "size": {
+          "title": "Size",
+          "selectSize": "Select...",
+          "VERY_SMALL": "Very Small",
+          "SMALL": "Small",
+          "MEDIUM": "Medium",
+          "LARGE": "Large",
+          "VERY_LARGE": "Very Large"
+        },
+        "description": {
+          "title": "Description",
+          "placeholder": "Originally from the Canary Islands..."
+        },
+        "recommended_place": {
+          "title": "Recommended Place",
+          "placeholder": "A place with diffused light..."
+        }
       }
 }
   }

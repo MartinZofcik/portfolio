@@ -13,7 +13,6 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import SubmitButton from '@/components/SubmitButton';
-import { createPlantSchema } from '@/app/[locale]/plant/components/schema';
 import { useTranslations } from 'next-intl';
 import {
   Select,
@@ -24,9 +23,10 @@ import {
 } from '@/components/ui/select';
 import { Plant, Size } from '@prisma/client';
 import { Textarea } from '@/components/ui/textarea';
+import { createPlantSchema, PlantSchema } from '@/lib/types';
 
 type TPlantFormProps = {
-  onSubmit: (data: z.infer<typeof createPlantSchema>) => void;
+  onSubmit: (data: PlantSchema) => void;
   plant?: Plant;
 };
 
@@ -51,20 +51,24 @@ const PlantForm: React.FC<TPlantFormProps> = ({ onSubmit, plant = null }) => {
       }
     : undefined;
 
-  const form = useForm<z.infer<typeof createPlantSchema>>({
+  const form = useForm<PlantSchema>({
     resolver: zodResolver(createPlantSchema),
     defaultValues: !!plant ? initialPlant : initialForm,
   });
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-8"
+        // action={createPlantAction}
+      >
         <FormField
           control={form.control}
           name="latin_name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('plantForm.latin_name')}</FormLabel>
+              <FormLabel>{t('plantForm.fields.latin_name')}</FormLabel>
               <FormControl>
                 <Input placeholder="Phoenix Canariensis" {...field} />
               </FormControl>
@@ -78,7 +82,7 @@ const PlantForm: React.FC<TPlantFormProps> = ({ onSubmit, plant = null }) => {
           name="slovak_name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('plantForm.slovak_name')}</FormLabel>
+              <FormLabel>{t('plantForm.fields.slovak_name')}</FormLabel>
               <FormControl>
                 <Input placeholder="Ďatlovník kanársky" {...field} />
               </FormControl>
@@ -91,18 +95,20 @@ const PlantForm: React.FC<TPlantFormProps> = ({ onSubmit, plant = null }) => {
           name="size"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('plantForm.size.title')} </FormLabel>
+              <FormLabel>{t('plantForm.fields.size.title')} </FormLabel>
               <Select value={field.value} onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder={t('plantForm.size.selectSize')} />
+                    <SelectValue
+                      placeholder={t('plantForm.fields.size.selectSize')}
+                    />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
                   {(Object.keys(Size) as Array<keyof typeof Size>).map(
                     (size) => (
                       <SelectItem key={size} value={size}>
-                        {t(`plantForm.size.${size}`)}
+                        {t(`plantForm.fields.size.${size}`)}
                       </SelectItem>
                     ),
                   )}
@@ -117,10 +123,10 @@ const PlantForm: React.FC<TPlantFormProps> = ({ onSubmit, plant = null }) => {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('plantForm.description.title')}</FormLabel>
+              <FormLabel>{t('plantForm.fields.description.title')}</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder={t('plantForm.description.placeholder')}
+                  placeholder={t('plantForm.fields.description.placeholder')}
                   {...field}
                 />
               </FormControl>
@@ -133,10 +139,14 @@ const PlantForm: React.FC<TPlantFormProps> = ({ onSubmit, plant = null }) => {
           name="recommended_place"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('plantForm.recommended_place.title')}</FormLabel>
+              <FormLabel>
+                {t('plantForm.fields.recommended_place.title')}
+              </FormLabel>
               <FormControl>
                 <Input
-                  placeholder={t('plantForm.recommended_place.placeholder')}
+                  placeholder={t(
+                    'plantForm.fields.recommended_place.placeholder',
+                  )}
                   {...field}
                 />
               </FormControl>

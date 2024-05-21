@@ -14,9 +14,10 @@ import { Plant } from '@prisma/client';
 import { Leaf, Pencil, Ruler } from 'lucide-react';
 import { ModalContext } from '@/app/context/modal-provider';
 import { useTranslations } from 'next-intl';
-import { editIsFavorite } from '@/db/actions/plant';
 import EditPlantForm from '@/app/[locale]/plant/[plantId]/EditPlantForm';
 import { useToast } from '@/components/ui/use-toast';
+import { handleActionResponse } from '@/app/api/utils';
+import { editIsFavorite } from '@/db/actions/plant/Update';
 
 interface PlantProps {
   plant: Plant;
@@ -42,11 +43,8 @@ const PlantCard: React.FC<PlantProps> = ({ plant }) => {
 
   async function handleIsFavorite(id: string, isFavorite: boolean | null) {
     if (typeof isFavorite === 'boolean') {
-      const { status, message } = await editIsFavorite(id, isFavorite);
-      toast({
-        variant: status === 'success' ? 'default' : 'destructive',
-        title: message,
-      });
+      const response = await editIsFavorite(id, isFavorite);
+      handleActionResponse(response, t, toast, undefined);
     }
   }
 

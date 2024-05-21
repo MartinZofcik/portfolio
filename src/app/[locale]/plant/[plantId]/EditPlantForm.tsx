@@ -1,18 +1,27 @@
 'use client';
 
-import { z } from 'zod';
-import { createPlantSchema } from '@/app/[locale]/plant/components/schema';
-import { createPlantAction, editPlantAction } from '@/db/actions/plant';
 import PlantForm from '@/app/[locale]/plant/components/PlantForm';
 import { Plant } from '@prisma/client';
+import { PlantSchema } from '@/lib/types';
+import React from 'react';
+import { ModalContext } from '@/app/context/modal-provider';
+import { useToast } from '@/components/ui/use-toast';
+import { useTranslations } from 'next-intl';
+import { handleActionResponse } from '@/app/api/utils';
+import { editPlantAction } from '@/db/actions/plant/Update';
 
 type IEditPlantFormProps = {
   plant: Plant;
 };
 
 const EditPlantForm: React.FC<IEditPlantFormProps> = ({ plant }) => {
-  async function onSubmit(values: z.infer<typeof createPlantSchema>) {
-    await editPlantAction(plant.id, values);
+  const t = useTranslations('Index');
+  const { toast } = useToast();
+  const { toggleModal } = React.useContext(ModalContext);
+
+  async function onSubmit(values: PlantSchema) {
+    const response = await editPlantAction(plant.id, values);
+    handleActionResponse(response, t, toast, toggleModal);
   }
 
   return <PlantForm plant={plant} onSubmit={onSubmit} />;
