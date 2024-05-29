@@ -4,6 +4,7 @@ import { AbstractIntlMessages, NextIntlClientProvider } from 'next-intl';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import React, { ReactNode } from 'react';
 import { SessionProvider } from 'next-auth/react';
+import { ModalProvider } from '@/app/context/modal-provider';
 
 export function Providers({
   children,
@@ -19,6 +20,7 @@ export function Providers({
       <NextIntlClientProvider
         locale={locale}
         messages={messages}
+        timeZone="Europe/Bratislava"
       >
         <ThemeProvider
           attribute="class"
@@ -26,7 +28,7 @@ export function Providers({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <ModalProvider>{children}</ModalProvider>
         </ThemeProvider>
       </NextIntlClientProvider>
     </SessionProvider>

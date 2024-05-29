@@ -11,9 +11,14 @@ model Plant {
   id                String      @id @default(uuid())
   latin_name        String
   slovak_name       String?
+  trefle_name       String?
   size              Size
   description       String?
   recommended_place String?
+  is_favorite       Boolean?    @default(false)
+  last_watered      DateTime?
+  last_fertilized   DateTime?
+
   created_at        DateTime    @default(now())
   updated_at        DateTime    @updatedAt
 

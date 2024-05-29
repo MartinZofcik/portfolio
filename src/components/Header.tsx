@@ -10,6 +10,7 @@ import { useTranslations } from 'next-intl';
 import AccountDropdown from '@/components/AccountDropdown';
 import SignInButton from '@/components/SignInButton';
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
+import { ToastAction } from '@/components/ui/toast';
 
 const Header = () => {
   const { toast } = useToast();
@@ -18,6 +19,7 @@ const Header = () => {
 
   return (
     <header className="mx-auto px-4 py-2 bg-gray-100 dark:bg-slate-900 ">
+      {/*sticky top-0 z-50*/}
       <div className="flex items-center justify-between">
         <div className="flex items-center justify-center">
           <Link
@@ -45,17 +47,13 @@ const Header = () => {
               toast({
                 title: 'Ľúbim Ťa',
                 description: 'ty tlustá kačica <3',
-                // action: <ToastAction altText="gud">Dobre ti tak</ToastAction>,
+                action: <ToastAction altText="gud">Dobre ti tak</ToastAction>,
               });
             }}
           />
           <LangToggle />
           <ModeToggle />
-          {session.status === 'authenticated' ? (
-            <AccountDropdown />
-          ) : (
-            <SignInButton />
-          )}
+          {session.data ? <AccountDropdown /> : <SignInButton />}
         </div>
       </div>
     </header>

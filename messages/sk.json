@@ -20,26 +20,55 @@
       "table": "Tabuľka"
     },
     "addPlantButton": "Pridať",
-    "plantForm": {
-      "latin_name": "Latinský názov",
-      "slovak_name": "Slovenský názov",
-      "size": {
-        "title": "Veľkosť",
-        "selectSize": "Vyberte...",
-        "VERY_SMALL": "veľmi malá",
-        "SMALL": "malá",
-        "MEDIUM": "stredná",
-        "LARGE": "veľká",
-        "VERY_LARGE": "veľmi veľká"
-      },
-      "description": {
-        "title": "Podrobnosti",
-        "placeholder": "Pochádza pôvodne z Kanárskych ostrovov..."
-      },
-      "recommended_place": {
-        "title": "Odporúčané miesto",
-        "placeholder": "Miesto s rozptýleným svetlom..."
+    "form": {
+      "submit": "Uložiť",
+      "status": {
+        "unauthorized": {
+          "title":"Neautorizovaný prístup",
+          "description":"Neautorizovaný prístup"
+        },
+        "success": {
+          "title":"Paráda!",
+          "description":"Dáta boli uložené"
+        },
+        "error": {
+          "title":"Chyba",
+          "description":"Vyskytla sa chyba"
+        }
       }
+    },
+    "plantForm": {
+      "create": "Pridať rastlinku",
+      "edit": "Upraviť rastlinku",
+      "fields": {
+        "latin_name": "Latinský názov",
+        "slovak_name": "Slovenský názov",
+        "size": {
+          "title": "Veľkosť",
+          "selectSize": "Vyberte...",
+          "VERY_SMALL": "Veľmi malá",
+          "SMALL": "Malá",
+          "MEDIUM": "Stredná",
+          "LARGE": "Veľká",
+          "VERY_LARGE": "Veľmi veľká"
+        },
+        "description": {
+          "title": "Podrobnosti",
+          "placeholder": "Pochádza pôvodne z Kanárskych ostrovov..."
+        },
+        "recommended_place": {
+          "title": "Odporúčané miesto",
+          "placeholder": "Miesto s rozptýleným svetlom..."
+        }
+      }
+    },
+    "plantActions": {
+      "isFavorite": {
+        "added": "Tvoja rastlinka bola pridaná do obľúbených :)",
+        "removed": "Rastlinka bola odstránená z obľúbených"
+      },
+      "watered": "Tvoja rastlinka bola uložená ako čerstvo poliata",
+      "fertilized": "Tvoja rastlinka bola uložená ako čerstvo pohnojená"
     }
   }
 }
