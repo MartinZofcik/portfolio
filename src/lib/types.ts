@@ -8,7 +8,7 @@ export const createPlantSchema = z.object({
   }),
   slovak_name: z.string(),
   size: z.nativeEnum(Size),
-  description: z.string(),
+  description: z.string().max(400),
   recommended_place: z.string(),
 });
 

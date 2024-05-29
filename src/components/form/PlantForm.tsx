@@ -1,8 +1,8 @@
 'use client';
 
+import React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import {
   Form,
   FormControl,
@@ -25,35 +25,33 @@ import { Plant, Size } from '@prisma/client';
 import { Textarea } from '@/components/ui/textarea';
 import { createPlantSchema, PlantSchema } from '@/lib/types';
 
-type TPlantFormProps = {
+interface TPlantFormProps {
   onSubmit: (data: PlantSchema) => void;
   plant?: Plant;
-};
+}
 
-const initialForm = {
-  latin_name: '',
-  slovak_name: '',
-  size: Size.MEDIUM,
-  description: '',
-  recommended_place: '',
-};
+// const initialForm = {
+//   latin_name: '',
+//   slovak_name: '',
+//   size: Size.MEDIUM,
+//   description: '',
+//   recommended_place: '',
+// };
 
 const PlantForm: React.FC<TPlantFormProps> = ({ onSubmit, plant = null }) => {
   const t = useTranslations('Index');
 
-  const initialPlant = plant
-    ? {
-        latin_name: plant.latin_name,
-        slovak_name: plant.slovak_name ?? '',
-        size: plant.size ?? Size.MEDIUM,
-        description: plant.description ?? '',
-        recommended_place: plant.recommended_place ?? '',
-      }
-    : undefined;
+  const initialPlant = {
+    latin_name: plant?.latin_name ?? '',
+    slovak_name: plant?.slovak_name ?? '',
+    size: plant?.size ?? Size.MEDIUM,
+    description: plant?.description ?? '',
+    recommended_place: plant?.recommended_place ?? '',
+  };
 
   const form = useForm<PlantSchema>({
     resolver: zodResolver(createPlantSchema),
-    defaultValues: !!plant ? initialPlant : initialForm,
+    defaultValues: initialPlant,
   });
 
   return (
@@ -126,6 +124,7 @@ const PlantForm: React.FC<TPlantFormProps> = ({ onSubmit, plant = null }) => {
               <FormLabel>{t('plantForm.fields.description.title')}</FormLabel>
               <FormControl>
                 <Textarea
+                  rows={6}
                   placeholder={t('plantForm.fields.description.placeholder')}
                   {...field}
                 />
@@ -143,7 +142,8 @@ const PlantForm: React.FC<TPlantFormProps> = ({ onSubmit, plant = null }) => {
                 {t('plantForm.fields.recommended_place.title')}
               </FormLabel>
               <FormControl>
-                <Input
+                <Textarea
+                  rows={3}
                   placeholder={t(
                     'plantForm.fields.recommended_place.placeholder',
                   )}

@@ -1,3 +1,5 @@
+import { redirect } from '@/navigation';
+
 export const getErrorMessage = (error: unknown): string => {
   let message: string;
   if (error instanceof Error) {
@@ -51,8 +53,9 @@ export const handleActionResponse = (
         variant: 'destructive',
         title: t('form.status.unauthorized.title'),
         description: t('form.status.unauthorized.description'),
-        duration: 5000,
+        duration: 2000,
       });
+      redirect('/api/auth/signin');
     }
   }
 };

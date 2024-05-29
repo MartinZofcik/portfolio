@@ -61,6 +61,10 @@
           "placeholder": "Miesto s rozptýleným svetlom..."
         }
       }
+    },
+    "isPlantFavorite": {
+      "addedToFavorites": "Rastlinka bola pridaná do obľúbených :)",
+      "removedFromFavorites": "Rastlinka bola odstránená z obľúbených"
     }
   }
 }

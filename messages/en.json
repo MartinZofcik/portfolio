@@ -61,6 +61,10 @@
           "placeholder": "A place with diffused light..."
         }
       }
-}
+    },
+    "isPlantFavorite": {
+      "addedToFavorites": "Plant has been added to Favorites",
+      "removedFromFavorites": "Plant has been removed from Favorites"
+    }
   }
 }

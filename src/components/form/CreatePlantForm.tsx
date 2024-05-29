@@ -1,6 +1,6 @@
 'use client';
 
-import PlantForm from '@/app/[locale]/plant/components/PlantForm';
+import PlantForm from '@/components/form/PlantForm';
 import { PlantSchema } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 import { useToast } from '@/components/ui/use-toast';
@@ -15,7 +15,7 @@ const CreatePlantForm = () => {
   const { toggleModal } = React.useContext(ModalContext);
   async function onSubmit(values: PlantSchema) {
     const response = await createPlantAction(values);
-    handleActionResponse(response, t, toggleModal, toast);
+    handleActionResponse(response, t, toast, toggleModal);
   }
 
   return <PlantForm onSubmit={onSubmit} />;

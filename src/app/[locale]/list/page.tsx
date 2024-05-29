@@ -5,11 +5,14 @@ import { getPlantsByOwner } from '@/db/actions/plant/Read';
 
 export default async function PlantsListPage() {
   unstable_noStore();
-  const plants = await getPlantsByOwner();
+  const response = await getPlantsByOwner();
 
+  console.log(response);
   return (
     <PageWrapper>
-      <PlantsView plants={plants} />
+      {response?.status === 'success' && (
+        <PlantsView plants={response?.plants!} />
+      )}
     </PageWrapper>
   );
 }

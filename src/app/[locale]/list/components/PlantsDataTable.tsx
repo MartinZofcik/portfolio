@@ -84,26 +84,49 @@ export const columns: ColumnDef<Plant>[] = [
     header: 'size',
     cell: ({ row }) => <div className="capitalize">{row.getValue('size')}</div>,
   },
+  // {
+  //   accessorKey: 'recommended_place',
+  //   header: 'recommended_place',
+  //   cell: ({ row }) => (
+  //     <div className="capitalize">{row.getValue('recommended_place')}</div>
+  //   ),
+  // },
   {
-    accessorKey: 'recommended_place',
-    header: 'recommended_place',
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue('recommended_place')}</div>
-    ),
+    accessorKey: 'last_watered',
+    header: 'last_watered',
+    cell: ({ row }) => {
+      const dateTime = row.getValue('last_watered') as Date;
+      return dateTime ? (
+        <div className="capitalize">
+          {dateTime?.toLocaleDateString('en-US')}
+        </div>
+      ) : (
+        '-'
+      );
+    },
   },
   {
-    accessorKey: 'leave_count',
-    header: 'leave_count',
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue('leave_count')}</div>
-    ),
+    accessorKey: 'last_fertilized',
+    header: 'last_fertilized',
+    cell: ({ row }) => {
+      const dateTime = row.getValue('last_fertilized') as Date;
+      return dateTime ? (
+        <div className="capitalize">
+          {dateTime?.toLocaleDateString('en-US')}
+        </div>
+      ) : (
+        '-'
+      );
+    },
   },
   {
     accessorKey: 'created_at',
     header: 'created_at',
     cell: ({ row }) => {
       const dateTime = row.getValue('created_at') as Date;
-      return <div className="capitalize">{dateTime.toISOString()}</div>;
+      return (
+        <div className="capitalize">{dateTime.toLocaleDateString('en-US')}</div>
+      );
     },
   },
 

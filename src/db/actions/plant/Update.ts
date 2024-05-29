@@ -36,18 +36,26 @@ export async function editPlantAction(plantId: string, values: PlantSchema) {
   }
 }
 
-export async function editIsFavorite(plantId: string, isFavorite: boolean) {
+export async function editIsFavorite(
+  plantId: string,
+  isCurrentlyFavorite: boolean,
+) {
   try {
     await prisma.plant.update({
       where: {
         id: plantId,
       },
       data: {
-        is_favorite: !isFavorite,
+        is_favorite: !isCurrentlyFavorite,
       },
     });
     revalidatePath('/list');
-    return { status: 'success', messageId: 'form.status.success.description' };
+    return {
+      status: 'success',
+      messageId: isCurrentlyFavorite
+        ? 'isPlantFavorite.removedFromFavorites'
+        : 'isPlantFavorite.addedToFavorites',
+    };
   } catch (err: any) {
     return {
       status: 'error',

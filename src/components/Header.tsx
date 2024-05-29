@@ -47,7 +47,6 @@ const Header = () => {
               toast({
                 title: 'Ľúbim Ťa',
                 description: 'ty tlustá kačica <3',
-                variant: 'destructive',
                 action: <ToastAction altText="gud">Dobre ti tak</ToastAction>,
               });
             }}
