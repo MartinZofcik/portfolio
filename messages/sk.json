@@ -62,9 +62,13 @@
         }
       }
     },
-    "isPlantFavorite": {
-      "addedToFavorites": "Rastlinka bola pridaná do obľúbených :)",
-      "removedFromFavorites": "Rastlinka bola odstránená z obľúbených"
+    "plantActions": {
+      "isFavorite": {
+        "added": "Tvoja rastlinka bola pridaná do obľúbených :)",
+        "removed": "Rastlinka bola odstránená z obľúbených"
+      },
+      "watered": "Tvoja rastlinka bola uložená ako čerstvo poliata",
+      "fertilized": "Tvoja rastlinka bola uložená ako čerstvo pohnojená"
     }
   }
 }

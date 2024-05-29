@@ -62,9 +62,13 @@
         }
       }
     },
-    "isPlantFavorite": {
-      "addedToFavorites": "Plant has been added to Favorites",
-      "removedFromFavorites": "Plant has been removed from Favorites"
+    "plantActions": {
+      "isFavorite": {
+        "added": "Your plant has been added to Favorites! :)",
+        "removed": "Plant has been removed from Favorites!"
+      },
+      "watered": "Your plant has been saved as freshly watered!",
+      "fertilized": "Your plant has been saved as fertilized!"
     }
   }
 }

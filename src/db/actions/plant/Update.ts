@@ -53,8 +53,54 @@ export async function editIsFavorite(
     return {
       status: 'success',
       messageId: isCurrentlyFavorite
-        ? 'isPlantFavorite.removedFromFavorites'
-        : 'isPlantFavorite.addedToFavorites',
+        ? 'plantActions.isFavorite.removed'
+        : 'plantActions.isFavorite.added',
+    };
+  } catch (err: any) {
+    return {
+      status: 'error',
+      message: getErrorMessage(err),
+    };
+  }
+}
+
+export async function editLastWatered(plantId: string) {
+  try {
+    await prisma.plant.update({
+      where: {
+        id: plantId,
+      },
+      data: {
+        last_watered: new Date(),
+      },
+    });
+    revalidatePath('/list');
+    return {
+      status: 'success',
+      messageId: 'plantActions.watered',
+    };
+  } catch (err: any) {
+    return {
+      status: 'error',
+      message: getErrorMessage(err),
+    };
+  }
+}
+
+export async function editLastFertilized(plantId: string) {
+  try {
+    await prisma.plant.update({
+      where: {
+        id: plantId,
+      },
+      data: {
+        last_fertilized: new Date(),
+      },
+    });
+    revalidatePath('/list');
+    return {
+      status: 'success',
+      messageId: 'plantActions.fertilized',
     };
   } catch (err: any) {
     return {

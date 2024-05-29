@@ -7,12 +7,9 @@ export default async function PlantsListPage() {
   unstable_noStore();
   const response = await getPlantsByOwner();
 
-  console.log(response);
   return (
     <PageWrapper>
-      {response?.status === 'success' && (
-        <PlantsView plants={response?.plants!} />
-      )}
+      {response?.plants && <PlantsView plants={response?.plants} />}
     </PageWrapper>
   );
 }
