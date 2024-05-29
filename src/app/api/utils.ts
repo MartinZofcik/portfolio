@@ -1,4 +1,4 @@
-import { redirect } from '@/navigation';
+import { redirect } from 'next/navigation';
 
 export const getErrorMessage = (error: unknown): string => {
   let message: string;
