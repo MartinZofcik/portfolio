@@ -1,6 +1,6 @@
 'use client';
 
-import PlantForm from '@/components/form/PlantForm';
+import PlantForm from '@/app/[locale]/list/components/form/PlantForm';
 import { Plant } from '@prisma/client';
 import { PlantSchema } from '@/lib/types';
 import React from 'react';

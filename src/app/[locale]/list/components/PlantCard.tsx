@@ -29,7 +29,7 @@ import {
   editLastWatered,
 } from '@/db/actions/plant/Update';
 import PlantDetail from '@/app/[locale]/list/components/PlantDetail';
-import EditPlantForm from '@/components/form/EditPlantForm';
+import EditPlantForm from '@/app/[locale]/list/components/form/EditPlantForm';
 import {
   setFertilizeIconColor,
   setWaterIconColor,

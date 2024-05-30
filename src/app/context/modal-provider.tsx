@@ -1,12 +1,5 @@
 import React, { createContext } from 'react';
-import {
-  Dialog,
-  DialogOverlay,
-  DialogContent,
-  DialogClose,
-  DialogDescription,
-  DialogTitle,
-} from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 
 export interface IModalData {
   isOpen: boolean;

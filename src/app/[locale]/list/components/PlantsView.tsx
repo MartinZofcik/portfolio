@@ -10,7 +10,7 @@ import { Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
 import { ModalContext } from '@/app/context/modal-provider';
-import CreatePlantForm from '@/components/form/CreatePlantForm';
+import CreatePlantForm from '@/app/[locale]/list/components/form/CreatePlantForm';
 
 interface IPlantProps {
   plants: Plant[];

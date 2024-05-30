@@ -28,7 +28,7 @@ export async function editPlantAction(plantId: string, values: PlantSchema) {
       status: 'success',
       messageId: 'form.status.success.description',
     };
-  } catch (err: any) {
+  } catch (err: unknown) {
     return {
       status: 'error',
       message: getErrorMessage(err),
@@ -56,7 +56,7 @@ export async function editIsFavorite(
         ? 'plantActions.isFavorite.removed'
         : 'plantActions.isFavorite.added',
     };
-  } catch (err: any) {
+  } catch (err: unknown) {
     return {
       status: 'error',
       message: getErrorMessage(err),
@@ -79,7 +79,7 @@ export async function editLastWatered(plantId: string) {
       status: 'success',
       messageId: 'plantActions.watered',
     };
-  } catch (err: any) {
+  } catch (err: unknown) {
     return {
       status: 'error',
       message: getErrorMessage(err),
@@ -102,7 +102,7 @@ export async function editLastFertilized(plantId: string) {
       status: 'success',
       messageId: 'plantActions.fertilized',
     };
-  } catch (err: any) {
+  } catch (err: unknown) {
     return {
       status: 'error',
       message: getErrorMessage(err),

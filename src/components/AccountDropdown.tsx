@@ -1,11 +1,12 @@
+import React from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuTrigger,
   DropdownMenuItem,
+  DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { signOut, useSession } from 'next-auth/react';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useTranslations } from 'next-intl';
 import { LogOut } from 'lucide-react';
 
@@ -19,10 +20,12 @@ const AccountDropdown = () => {
         <Avatar>
           {session.data?.user?.image && (
             <>
-              <AvatarImage src={session.data?.user?.image} referrerPolicy={"no-referrer"}/>
+              <AvatarImage
+                src={session.data?.user?.image}
+                referrerPolicy={'no-referrer'}
+              />
               <AvatarFallback>AA</AvatarFallback>
             </>
-
           )}
         </Avatar>
       </DropdownMenuTrigger>

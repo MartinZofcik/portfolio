@@ -1,12 +1,12 @@
 'use client';
 
+import React from 'react';
 import ModeToggle from '@/components/ModeToggle';
 import { Heart, Sprout } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import LangToggle from '@/components/LangToggle';
 import { Link } from '@/navigation';
 import { useSession } from 'next-auth/react';
-import { useTranslations } from 'next-intl';
 import AccountDropdown from '@/components/AccountDropdown';
 import SignInButton from '@/components/SignInButton';
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
@@ -14,7 +14,6 @@ import { ToastAction } from '@/components/ui/toast';
 
 const Header = () => {
   const { toast } = useToast();
-  const t = useTranslations('Index');
   const session = useSession();
 
   return (

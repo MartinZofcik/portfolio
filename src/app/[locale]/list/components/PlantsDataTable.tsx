@@ -1,11 +1,7 @@
 'use client';
 
-import * as React from 'react';
-import {
-  CaretSortIcon,
-  ChevronDownIcon,
-  DotsHorizontalIcon,
-} from '@radix-ui/react-icons';
+import React from 'react';
+import { ChevronDownIcon } from '@radix-ui/react-icons';
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -25,8 +21,6 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
@@ -39,9 +33,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Plant } from '@prisma/client';
-import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
 
-// @ts-ignore
 export const columns: ColumnDef<Plant>[] = [
   {
     id: 'select',
@@ -253,9 +245,7 @@ const PlantsDataTable: React.FC<PlantsDataTableProps> = ({ plants }) => {
                     key={column.id}
                     className="capitalize"
                     checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
+                    onCheckedChange={(value) => column.toggleVisibility(value)}
                   >
                     {column.id}
                   </DropdownMenuCheckboxItem>

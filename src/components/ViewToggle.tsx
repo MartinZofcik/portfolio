@@ -1,14 +1,13 @@
 'use client';
 
+import React from 'react';
 import { Grid3X3, Table2 } from 'lucide-react';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { useSearchParams } from 'next/navigation';
-import { useTranslations } from 'next-intl';
-import { useRouter, usePathname } from '@/navigation';
+import { usePathname, useRouter } from '@/navigation';
 
 const ViewToggle = () => {
   const { replace } = useRouter();
-  const t = useTranslations('Index');
   const pathname = usePathname();
   const searchParams = useSearchParams();
 

@@ -15,7 +15,7 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    // @ts-ignore
+    // @ts-expect-error session not typed MFcker
     jwt({ token, account, user }) {
       if (account) {
         // token.accessToken = account.access_token;
@@ -23,7 +23,7 @@ export const authOptions = {
       }
       return token;
     },
-    // @ts-ignore
+    // @ts-expect-error session not typed MFcker
     session({ session, token }) {
       // session.accessToken = token.accessToken;
       session.user.id = token.id;

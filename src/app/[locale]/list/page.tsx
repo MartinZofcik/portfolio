@@ -1,3 +1,4 @@
+import React from 'react';
 import PlantsView from '@/app/[locale]/list/components/PlantsView';
 import PageWrapper from '@/components/PageWrapper';
 import { unstable_noStore } from 'next/cache';

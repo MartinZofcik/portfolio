@@ -1,6 +1,6 @@
 'use client';
 
-import PlantForm from '@/components/form/PlantForm';
+import PlantForm from '@/app/[locale]/list/components/form/PlantForm';
 import { PlantSchema } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 import { useToast } from '@/components/ui/use-toast';
