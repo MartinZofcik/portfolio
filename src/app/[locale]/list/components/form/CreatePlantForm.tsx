@@ -6,8 +6,8 @@ import { useTranslations } from 'next-intl';
 import { useToast } from '@/components/ui/use-toast';
 import React from 'react';
 import { ModalContext } from '@/app/context/modal-provider';
-import { handleActionResponse } from '@/app/api/utils';
-import { createPlantAction } from '@/db/actions/plant/Create';
+import { handleActionResponse } from '@/server/utils';
+import { createPlantAction } from '@/server/actions/plant/Create';
 
 const CreatePlantForm = () => {
   const t = useTranslations('Index');

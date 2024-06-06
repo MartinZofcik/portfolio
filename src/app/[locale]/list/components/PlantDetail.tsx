@@ -3,21 +3,23 @@ import { Plant } from '@prisma/client';
 import axios from 'axios';
 import Image from 'next/image';
 import { Loader } from 'lucide-react';
+import { TreflePlant } from '@/app/api/trefle/trefle.dto';
 
 interface PlantDetailProps {
   plant: Plant;
 }
 
-const PlantDetail: React.FC<PlantDetailProps> = ({ plant }) => {
-  const [treflePlantDetails, setTreflePlantDetails] = React.useState<any>(null);
+function PlantDetail({ plant }: PlantDetailProps) {
+  const [treflePlantDetails, setTreflePlantDetails] = React.useState<
+    TreflePlant[] | null
+  >(null);
 
   useEffect(() => {
+    const plantName = plant?.trefle_name ?? plant.latin_name.split(' ')[0];
     axios
-      .get(`/api/trefle?plant_name=${plant.latin_name}`)
-      .then((res) => setTreflePlantDetails(res.data.data.data));
+      .get(`/api/trefle?plant_name=${plantName}`)
+      .then((res) => setTreflePlantDetails(res?.data?.data?.data));
   }, [plant]);
-
-  console.log(treflePlantDetails);
 
   if (!treflePlantDetails) {
     return <Loader className="m-auto" />;
@@ -27,7 +29,7 @@ const PlantDetail: React.FC<PlantDetailProps> = ({ plant }) => {
     <div className="p-6 max-w-4xl mx-auto rounded-lg shadow-md">
       <div className="text-center">
         <h1 className="text-2xl font-bold mb-2">
-          Family: {treflePlantDetails?.[0]?.family}
+          Family: {treflePlantDetails?.[0].family}
         </h1>
         <h2 className="text-xl italic text-gray-600">
           Genus: {treflePlantDetails?.[0]?.genus}
@@ -59,6 +61,6 @@ const PlantDetail: React.FC<PlantDetailProps> = ({ plant }) => {
       </div>
     </div>
   );
-};
+}
 
 export default PlantDetail;

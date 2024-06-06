@@ -43,6 +43,13 @@
       "fields": {
         "latin_name": "Latin Name",
         "slovak_name": "Slovak Name",
+        "trefle_name": {
+          "title": "Trefle Name",
+          "button": "Select plant...",
+          "placeholder": "Search plant...",
+          "not_found": "No plant found.",
+          "description": "This will be used in advanced detail"
+        },
         "size": {
           "title": "Size",
           "selectSize": "Select...",

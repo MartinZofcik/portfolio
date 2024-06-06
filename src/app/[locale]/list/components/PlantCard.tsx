@@ -22,18 +22,19 @@ import {
 import { ModalContext } from '@/app/context/modal-provider';
 import { useTranslations } from 'next-intl';
 import { useToast } from '@/components/ui/use-toast';
-import { handleActionResponse } from '@/app/api/utils';
-import {
-  editIsFavorite,
-  editLastFertilized,
-  editLastWatered,
-} from '@/db/actions/plant/Update';
+import { handleActionResponse } from '@/server/utils';
+
 import PlantDetail from '@/app/[locale]/list/components/PlantDetail';
 import EditPlantForm from '@/app/[locale]/list/components/form/EditPlantForm';
 import {
   setFertilizeIconColor,
   setWaterIconColor,
 } from '@/app/[locale]/list/components/utils';
+import {
+  editIsFavorite,
+  editLastFertilized,
+  editLastWatered,
+} from '@/server/actions/plant/Update';
 
 interface PlantCardProps {
   plant: Plant;
@@ -91,7 +92,7 @@ const PlantCard: React.FC<PlantCardProps> = ({ plant }) => {
   }
 
   return (
-    <Card key={plant?.id} className="h-full flex flex-col">
+    <Card key={plant?.id} className="flex flex-col max-w-[20rem] lg:max-w-2xl">
       <CardHeader className="h-28 pb-3">
         <div className="flex flex-row justify-between">
           <div
@@ -113,7 +114,7 @@ const PlantCard: React.FC<PlantCardProps> = ({ plant }) => {
       </CardHeader>
       <CardContent
         onClick={handleOpenDetail}
-        className="hover:cursor-pointer h-64"
+        className="hover:cursor-pointer h-64 overflow-hidden mb-4"
       >
         {/*<Image src={tree} alt="Picture of the plant" />*/}
         <div className="flex flex-col pb-3 justify-start text-muted-foreground">
@@ -123,7 +124,7 @@ const PlantCard: React.FC<PlantCardProps> = ({ plant }) => {
               {t(`plantForm.fields.size.${plant.size}`)}
             </p>
           </div>
-          <div className="flex flex-row items-center mt-1">
+          <div className="flex flex-row mt-2">
             <div>
               <Navigation height={18} width={18} />
             </div>
@@ -132,11 +133,9 @@ const PlantCard: React.FC<PlantCardProps> = ({ plant }) => {
             </p>
           </div>
         </div>
-        {plant?.description && (
-          <p className="text-xs max-h-48 overflow-hidden">
-            {plant?.description}
-          </p>
-        )}
+        <p className="text-xs max-h-48 overflow-hidden">
+          {plant?.description ?? '-'}
+        </p>
       </CardContent>
       <CardFooter>
         <div className="w-3/6 m-auto flex flex-row justify-between items-center">

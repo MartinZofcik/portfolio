@@ -7,8 +7,8 @@ import React from 'react';
 import { ModalContext } from '@/app/context/modal-provider';
 import { useToast } from '@/components/ui/use-toast';
 import { useTranslations } from 'next-intl';
-import { handleActionResponse } from '@/app/api/utils';
-import { editPlantAction } from '@/db/actions/plant/Update';
+import { handleActionResponse } from '@/server/utils';
+import { editPlantAction } from '@/server/actions/plant/Update';
 
 type IEditPlantFormProps = {
   plant: Plant;

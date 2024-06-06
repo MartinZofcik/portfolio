@@ -3,9 +3,9 @@
 import { createPlantSchema, PlantSchema } from '@/lib/types';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
-import prisma from '@/db/db';
 import { revalidatePath } from 'next/cache';
-import { getErrorMessage } from '@/app/api/utils';
+import { getErrorMessage } from '@/server/utils';
+import prisma from '@/server/db';
 
 export async function createPlantAction(values: PlantSchema) {
   const session = await getServerSession(authOptions);

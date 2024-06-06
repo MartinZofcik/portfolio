@@ -2,8 +2,8 @@
 
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
-import prisma from '@/db/db';
-import { getErrorMessage } from '@/app/api/utils';
+import { getErrorMessage } from '@/server/utils';
+import prisma from '@/server/db';
 
 export async function getPlantsByOwner() {
   const session = await getServerSession(authOptions);

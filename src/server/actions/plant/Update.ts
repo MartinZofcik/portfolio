@@ -1,9 +1,9 @@
 'use server';
 
 import { createPlantSchema, PlantSchema } from '@/lib/types';
-import prisma from '@/db/db';
 import { revalidatePath } from 'next/cache';
-import { getErrorMessage } from '@/app/api/utils';
+import { getErrorMessage } from '@/server/utils';
+import prisma from '@/server/db';
 
 export async function editPlantAction(plantId: string, values: PlantSchema) {
   const result = createPlantSchema.safeParse(values);

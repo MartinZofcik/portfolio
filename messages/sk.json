@@ -43,6 +43,13 @@
       "fields": {
         "latin_name": "Latinský názov",
         "slovak_name": "Slovenský názov",
+        "trefle_name": {
+          "title": "Trefle názov",
+          "button": "Vyber rastlinku...",
+          "placeholder": "Nájdi rastlinku...",
+          "not_found": "Nič sme nenašli.",
+          "description": "Tento údaj bude použitý pre rožšírený detail"
+        },
         "size": {
           "title": "Veľkosť",
           "selectSize": "Vyberte...",
