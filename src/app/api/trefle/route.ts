@@ -5,7 +5,7 @@ export async function GET(request: Request) {
   const plant_name = searchParams.get('plant_name');
 
   const res = await fetch(
-    `https://trefle.io/api/v1/plants/search?token=${process.env.TREFLE_PLANTS_TOKEN}&q=${plant_name}`,
+    `http://trefle.io/api/v1/plants/search?token=${process.env.TREFLE_PLANTS_TOKEN}&q=${plant_name}`,
     {
       headers: {
         'Content-Type': 'application/json',

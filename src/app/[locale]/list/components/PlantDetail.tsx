@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Plant } from '@prisma/client';
 import axios from 'axios';
 import Image from 'next/image';
-import { Loader } from 'lucide-react';
 import { TreflePlant } from '@/app/api/trefle/trefle.dto';
 
 interface PlantDetailProps {
@@ -15,40 +14,51 @@ function PlantDetail({ plant }: PlantDetailProps) {
   >(null);
 
   useEffect(() => {
-    const plantName = plant?.trefle_name ?? plant.latin_name.split(' ')[0];
-    axios
-      .get(`/api/trefle?plant_name=${plantName}`)
-      .then((res) => setTreflePlantDetails(res?.data?.data?.data));
+    const plantName =
+      plant?.trefle_name && plant.trefle_name.length > 3
+        ? plant.trefle_name
+        : plant.latin_name.split(' ')[0];
+    try {
+      axios
+        .get(`/api/trefle?plant_name=${plantName}`)
+        .then((res) => setTreflePlantDetails(res?.data?.data?.data));
+    } catch (err: unknown) {
+      console.log(err);
+    }
   }, [plant]);
 
-  if (!treflePlantDetails) {
-    return <Loader className="m-auto" />;
-  }
+  // if (!treflePlantDetails) {
+  //   return <Loader className="m-auto" />;
+  // }
 
   return (
     <div className="p-6 max-w-4xl mx-auto rounded-lg shadow-md">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold mb-2">
-          Family: {treflePlantDetails?.[0].family}
-        </h1>
-        <h2 className="text-xl italic text-gray-600">
-          Genus: {treflePlantDetails?.[0]?.genus}
-        </h2>
-        <p className="text-xl italic text-gray-600">
-          {treflePlantDetails?.[0]?.year}
-        </p>
-      </div>
-      <div className="flex justify-center my-4">
-        {treflePlantDetails?.[0]?.image_url && (
-          <Image
-            src={treflePlantDetails?.[0]?.image_url}
-            alt="plant-image"
-            className="rounded-lg"
-            width={200}
-            height={350}
-          />
-        )}
-      </div>
+      {treflePlantDetails && (
+        <div>
+          <div className="text-center">
+            <h1 className="text-2xl font-bold mb-2">
+              Family: {treflePlantDetails?.[0].family}
+            </h1>
+            <h2 className="text-xl italic text-gray-600">
+              Genus: {treflePlantDetails?.[0]?.genus}
+            </h2>
+            <p className="text-xl italic text-gray-600">
+              {treflePlantDetails?.[0]?.year}
+            </p>
+          </div>
+          <div className="flex justify-center my-4">
+            {treflePlantDetails?.[0]?.image_url && (
+              <Image
+                src={treflePlantDetails?.[0]?.image_url}
+                alt="plant-image"
+                className="rounded-lg"
+                width={200}
+                height={350}
+              />
+            )}
+          </div>
+        </div>
+      )}
       <div className="space-y-4">
         <p>
           <strong>Size:</strong> {plant.size}

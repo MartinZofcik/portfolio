@@ -44,20 +44,11 @@ import { cn } from '@/lib/utils';
 import { useDebounce } from 'use-debounce';
 import axios from 'axios';
 import { TreflePlant } from '@/app/api/trefle/trefle.dto';
-import { ScrollArea } from '@/components/ui/scroll-area';
 
 interface TPlantFormProps {
   onSubmit: (data: PlantSchema) => void;
   plant?: Plant;
 }
-
-// const initialForm = {
-//   latin_name: '',
-//   slovak_name: '',
-//   size: Size.MEDIUM,
-//   description: '',
-//   recommended_place: '',
-// };
 
 const PlantForm: React.FC<TPlantFormProps> = ({ onSubmit, plant = null }) => {
   const t = useTranslations('Index');
@@ -94,18 +85,6 @@ const PlantForm: React.FC<TPlantFormProps> = ({ onSubmit, plant = null }) => {
         setPlantOptions(plantOptions);
       });
   }, [queryString]);
-
-  // const languages = [
-  //   { label: 'English', value: 'en' },
-  //   { label: 'French', value: 'fr' },
-  //   { label: 'German', value: 'de' },
-  //   { label: 'Spanish', value: 'es' },
-  //   { label: 'Portuguese', value: 'pt' },
-  //   { label: 'Russian', value: 'ru' },
-  //   { label: 'Japanese', value: 'ja' },
-  //   { label: 'Korean', value: 'ko' },
-  //   { label: 'Chinese', value: 'zh' },
-  // ] as const;
 
   return (
     <Form {...form}>
@@ -154,54 +133,55 @@ const PlantForm: React.FC<TPlantFormProps> = ({ onSubmit, plant = null }) => {
                       variant="outline"
                       role="combobox"
                       className={cn(
-                        'justify-between',
+                        'justify-center',
                         !field.value && 'text-muted-foreground',
                       )}
                     >
                       {field.value
-                        ? plantOptions.find(
-                            (plant) => plant.value === field.value,
-                          )?.label
+                        ? field.value
                         : t('plantForm.fields.trefle_name.button')}
                       <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
-                <PopoverContent className=" p-0">
+                <PopoverContent
+                  className="p-0 w-72 overflow-y-auto"
+                  align="start"
+                >
                   <Command>
                     <CommandInput
-                      onInput={(e: any) => setPlantQuery(e?.target?.value)}
+                      onInput={(e: any) => setPlantQuery(e?.target!.value)}
                       placeholder={t(
                         'plantForm.fields.trefle_name.placeholder',
                       )}
                     />
-                    <CommandEmpty>
-                      {t('plantForm.fields.trefle_name.not_found')}
-                    </CommandEmpty>
+                    {plantOptions.length === 0 && (
+                      <CommandEmpty>
+                        {t('plantForm.fields.trefle_name.not_found')}
+                      </CommandEmpty>
+                    )}
                     <CommandGroup>
-                      <ScrollArea>
-                        <CommandList>
-                          {plantOptions.map((plant) => (
-                            <CommandItem
-                              value={plant.label}
-                              key={plant.label}
-                              onSelect={() => {
-                                form.setValue('trefle_name', plant.value);
-                              }}
-                            >
-                              <Check
-                                className={cn(
-                                  'mr-2 h-4 w-4',
-                                  plant.value === field.value
-                                    ? 'opacity-100'
-                                    : 'opacity-0',
-                                )}
-                              />
-                              {plant.label}
-                            </CommandItem>
-                          ))}
-                        </CommandList>
-                      </ScrollArea>
+                      <CommandList>
+                        {plantOptions.map((plant) => (
+                          <CommandItem
+                            value={plant.label}
+                            key={plant.label}
+                            onSelect={() => {
+                              form.setValue('trefle_name', plant.value);
+                            }}
+                          >
+                            <Check
+                              className={cn(
+                                'mr-2 h-4 w-4',
+                                plant.value === field.value
+                                  ? 'opacity-100'
+                                  : 'opacity-0',
+                              )}
+                            />
+                            {plant.label}
+                          </CommandItem>
+                        ))}
+                      </CommandList>
                     </CommandGroup>
                   </Command>
                 </PopoverContent>

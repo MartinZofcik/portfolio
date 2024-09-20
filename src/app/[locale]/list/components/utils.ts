@@ -1,6 +1,6 @@
 export const setWaterIconColor = (lastWatered: Date | null) => {
   if (!lastWatered) {
-    return '';
+    return undefined;
   }
   const today = new Date();
   const daysDiff = parseInt(
@@ -13,7 +13,7 @@ export const setWaterIconColor = (lastWatered: Date | null) => {
 
 export const setFertilizeIconColor = (lastFertilized: Date | null) => {
   if (!lastFertilized) {
-    return '';
+    return undefined;
   }
   const today = new Date();
   const daysDiff = parseInt(
